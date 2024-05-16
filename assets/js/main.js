@@ -234,3 +234,81 @@
   new PureCounter();
 
 })()
+
+
+const username = document.getElementById('name');
+const form = document.getElementById('submit-form');
+const errorElement = document.getElementById('nameError');
+const email=document.getElementById('email')
+const emailerror=document.getElementById('emailError')
+const subject=document.getElementById('subject')
+const subjectError=document.getElementById('subjectError')
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent the default form submission
+
+    let nameMessages = [];
+    let emailMessages=[];
+  let subjectMessages=[];
+    // Validation logic
+    if (username.value === '' || username.value == null || !/^[a-zA-Z\s]+$/.test(username.value)) {
+    nameMessages.push('Enter a valid name');
+ }
+ if(email.value === '' || email.value == null || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value) ){
+  emailMessages.push('Enter a valid email')
+ }
+ if(subject.value === '' || subject.value == null || !/^[a-zA-Z\s]+$/.test(subject.value)){
+  subjectMessages.push('enter a subject')
+ }
+
+    if (nameMessages.length > 0 ) {
+        errorElement.innerText = nameMessages.join(', ');
+    }else if (emailMessages.length >0) {
+        emailerror.innerText = emailMessages.join(',')
+    }else if{
+
+    }else if(subjectError.length >0){
+      subjectError.innerText = subjectMessages.join(',');
+    } {
+        
+        errorElement.innerText = '';
+        emailerror.innerText = '';
+        subjectError.innerText= '';
+        // AJAX request using Fetch API
+        const formData = new FormData(form);
+        fetch('https://script.google.com/macros/s/AKfycbz9d8B_7PfaMefyhxNLdjjU0Y_8nH6ROqOzfXKJZsaDUqb3Iqdluv8n8XH7DhD1VoEi/exec', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Form submitted successfully");
+            window.location.reload();
+            // window.location.href = "https://google.com";
+        })
+        .catch(error => {
+            alert("Something went wrong");
+        });
+    }
+});
+
+
+
+
+
+// $("#submit-form").submit((e)=>{
+//   e.preventDefault()
+//   $.ajax({
+//       url:"https://script.google.com/macros/s/AKfycbz9d8B_7PfaMefyhxNLdjjU0Y_8nH6ROqOzfXKJZsaDUqb3Iqdluv8n8XH7DhD1VoEi/exec",
+//       data:$("#submit-form").serialize(),
+//       method:"post",
+//       success:function (response){
+//           alert("Form submitted successfully")
+//           window.location.reload()
+//           //window.location.href="https://google.com"
+//       },
+//       error:function (err){
+//           alert("Something Error")
+
+//       }
+//   })
+// })
