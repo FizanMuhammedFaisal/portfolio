@@ -256,7 +256,7 @@ form.addEventListener('submit', (e) => {
  if(email.value === '' || email.value == null || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value) ){
   emailMessages.push('Enter a valid email')
  }
- if(subject.value === '' || subject.value == null || !/^[a-zA-Z\s]+$/.test(subject.value)){
+ if(subject.value === '' || subject.value == null ||  !/^[a-zA-Z0-9\s]+$/.test(subject.value)){
   subjectMessages.push('enter a subject')
  }
 
@@ -264,9 +264,9 @@ form.addEventListener('submit', (e) => {
         errorElement.innerText = nameMessages.join(', ');
     }else if (emailMessages.length >0) {
         emailerror.innerText = emailMessages.join(',')
-    }else if(subjectError.length >0){
+    }else if(subjectMessages.length >0){
       subjectError.innerText = subjectMessages.join(',');
-    } {
+    }else {
         
         errorElement.innerText = '';
         emailerror.innerText = '';
