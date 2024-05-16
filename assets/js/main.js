@@ -264,8 +264,6 @@ form.addEventListener('submit', (e) => {
         errorElement.innerText = nameMessages.join(', ');
     }else if (emailMessages.length >0) {
         emailerror.innerText = emailMessages.join(',')
-    }else if{
-
     }else if(subjectError.length >0){
       subjectError.innerText = subjectMessages.join(',');
     } {
